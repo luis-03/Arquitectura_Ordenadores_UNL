@@ -1,0 +1,17 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+entity buf_tri_e is
+port(OE: datain: in std_logic;
+salida: buf_tri_e;
+end decodificador;
+
+architecture arq_buff of buf_tri_e is
+begin
+process(OE, datain) begin;
+if OE ='0' then
+salida <= 'Z';
+else
+salida <= datain;
+end if;
+end process;
+end arq_buff;

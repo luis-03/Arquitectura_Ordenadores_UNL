@@ -1,0 +1,11 @@
+entity twe1 is
+port (E0,E1,E2,E3 in std_logic; SELA, SELB, SELC: in std_logic; F: out std_logic);
+end twe1;
+
+architecture demotwe1 of twe1 is
+begin
+F <= E3 when SELC='1' else
+     E2 when SELB='1' else
+     E1 when SELA='1' else
+     E0;
+end demotwe1;
