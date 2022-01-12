@@ -6,7 +6,7 @@ port (
    C,P: out std_logic);
 end Expendedora;
 
-architecture FSM of Expendedora is
+architecture Behavioral of Expendedora is
 	type estado is (S0,S1,S2,S3,S4);
 	signal edo_pres, edo_fut : estado; 
 begin 
@@ -52,4 +52,4 @@ end process Combinacional;
 	   edo_pres <= edo_fut;
 	  end if;
 	end process Secuencial;
-end FSM;
+end Behavioral;
