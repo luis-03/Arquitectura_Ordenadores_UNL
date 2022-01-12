@@ -1,0 +1,85 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+
+entity Expendedora is
+port (
+	RST,clk,U,D : in std_logic; 
+   C,P: out std_logic);
+end Expendedora;
+
+architecture FSM of Expendedora is
+	type estado is (S0,S1,S2,S3,S4);
+	signal edo_pres, edo_fut : estado; 
+begin 
+  
+
+ Combinacional: process(edo_pres,U,D)
+	begin 
+	  case edo_pres is
+	    when S0 =>
+		 
+		 C <= '0';
+		 P <= '0';
+		 if (U='1') then
+		   edo_fut <= S1; 
+		 elsif (D='1') then
+		   edo_fut <= S2; 
+		 else 
+		   edo_fut <= edo_pres; 
+		 end if;
+		 
+		 when S1 =>
+		 
+		 C <= '0';
+		 P <= '0';
+		 if (U = '1') then
+		 edo_fut <= S2; 
+		 elsif (D = '1') then
+		 edo_fut <= S3; 
+		 else
+		 edo_fut <= edo_pres; 
+		 end if;
+		 
+		 when S2 =>
+		 
+		 C <= '0';
+		 P <= '0';
+		 if (U='1') then
+		 edo_fut <= S3; 
+		 elsif (D = '1') then
+		 edo_fut <= S4; 
+		 else  
+		 edo_fut <= edo_pres; 
+		 end if;
+		 
+		 when S3 =>
+		 
+		 C <= '0';
+		 P <= '1';
+		 edo_fut <= S0; 
+
+		 when S4 =>
+		 
+		 C <= '1';
+		 P <= '1';
+		 edo_fut <= S0; 
+
+		 when others =>
+		 
+		 C <= '0';
+		 P <= '0';
+		 edo_fut <= S0; 	 
+		 
+	  end case;
+end process Combinacional;
+	
+	Secuencial: process (RST,CLK)
+	begin
+	  if (RST='0') then
+	  edo_pres <= S0; 
+	  elsif (CLK'event and CLK='1') then
+	   edo_pres <= edo_fut;
+		
+	  end if;
+	end process Secuencial;
+end FSM;
