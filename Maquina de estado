@@ -23,19 +23,19 @@ begin
 			end if;
 		 when S1 => C <= '0'; P <= '0';
 			if (U = '1') then
-			edo_fut <= S2; 
+				edo_fut <= S2; 
 			elsif (D = '1') then
-			edo_fut <= S3; 
+				edo_fut <= S3; 
 			else
-			edo_fut <= edo_pres; 
+				edo_fut <= edo_pres; 
 			end if;
 		 when S2 => C <= '0'; P <= '0';
 			if (U='1') then
-			edo_fut <= S3; 
+				edo_fut <= S3; 
 			elsif (D = '1') then
-			edo_fut <= S4; 
+				edo_fut <= S4; 
 			else  
-			edo_fut <= edo_pres; 
+				edo_fut <= edo_pres; 
 			end if;
 		 when S3 => C <= '0'; P <= '1';
 			edo_fut <= S0; 
